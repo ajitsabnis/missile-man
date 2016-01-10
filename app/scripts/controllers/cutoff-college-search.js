@@ -100,7 +100,6 @@ angular.module('missileManApp')
         st = $scope.metadata.cutoffDetails[i].csSeatType;
         obj.value = st.substring(st.length - 1);
         obj.label = obj.value === 'H' ? 'Home District' : 'Other District';
-
         if(tmpArr.indexOf(obj.value) === -1 && ( st[1] === $scope.collegeSearch.gender || st[1] === '@') && st[0] === $scope.collegeSearch.seatType && st.substring( 2, st.length-1 ) === $scope.collegeSearch.category && !isPH) {
             tmpArr.push(obj.value);
             distTypes.push(obj);
