@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->library('email');
+		echo "hello";
 		$config = array(
 			'wordwrap' => TRUE,
 			'protocol' => 'smtp',
@@ -37,12 +38,10 @@ class Welcome extends CI_Controller {
 		$this->email->initialize($config);
 		$this->email->from('support@cutoffsearch.com');
 		$this->email->reply_to('support@cutoffsearch.com');
-		$this->email->to('ajitnetwork@gmail.com');
+		$this->email->to('vishnutekale13@gmail.com');
 		$this->email->cc('scriptofer@gmail.com');
 		$this->email->subject('Cutoff');
 		$this->email->message($mailData);
 		$this->email->send();
-
-		echo $this->email->print_debugger();
 	}
 }

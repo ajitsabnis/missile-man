@@ -58,9 +58,11 @@ class Users extends CosRestController
           'wordwrap' => TRUE,
         );
 
+	$urlLink = 'http://www.cutoffsearch.com/services/index.php/users/verify?mobile='.element( 'csPhone', $user ).'&otp='.$tempOtp.'&hash='.md5(rand(100,500));
         $mailData = array(
           'phone' => element( 'csPhone', $user ),
           'otp' => $tempOtp,
+          'urlLink' => $urlLink
         );
         $this->email->initialize($config);
         $this->email->from('support@cutoffsearch.com', 'Cutoff Support');
@@ -68,7 +70,7 @@ class Users extends CosRestController
         $this->email->to($this->post('email'));
         $this->email->bcc('vishnutekale13@gmail.com');
         $this->email->subject('Cutoffsearch Signup | Verification');
-        $html_email = $this->load->view('mail/template', $mailData, true);
+        $html_email = $this->load->view('mail/templatemail', $mailData, true);
         $this->email->message($html_email);
         $this->email->send();
 

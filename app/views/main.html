@@ -111,8 +111,9 @@
 
           </div>
           <div class="inner-box category-content">
+            <h2>Video</h2>
             <div class="color-border"></div>
-            <div class="row">
+            <div class="row" ng-if="!isMobileDevice">
               <div class="col-md-4 col-sm-4">
                 <iframe width="100%" src="https://www.youtube.com/embed/wabTLwy1zSk" frameborder="0" allowfullscreen></iframe>
               </div>
@@ -120,6 +121,17 @@
                 <iframe width="100%" src="https://www.youtube.com/embed/G7HejPG--kE" frameborder="0" allowfullscreen></iframe>
               </div>
               <div class="col-md-4 col-sm-4">
+                <iframe width="100%" src="https://www.youtube.com/embed/r3iTVIkuK4Y" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="row" ng-if="isMobileDevice">
+              <div class="col-md-12 col-sm-12" ng-if="todaysDate % 3 === 0">
+                <iframe width="100%" src="https://www.youtube.com/embed/wabTLwy1zSk" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="col-md-12 col-sm-12" ng-if="todaysDate % 3 === 1">
+                <iframe width="100%" src="https://www.youtube.com/embed/G7HejPG--kE" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="col-md-12 col-sm-12" ng-if="todaysDate % 3 === 2">
                 <iframe width="100%" src="https://www.youtube.com/embed/r3iTVIkuK4Y" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
@@ -153,72 +165,18 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-8 page-content col-thin-right">
+        <div class="col-sm-9 page-content col-thin-right">
           <div class="inner-box category-content">
-            <h2>Media Coverage</h2>
+            <h2>Experts Openion</h2>
             <div class="color-border"></div>
-            <div class="row">
-              <div class="col-md-12">
-               <a class="ng-scope" target="_blank" href="http://epaperbeta.timesofindia.com//Article.aspx?eid=31835&articlexml=21062014008016">
-                  <img class="img-responsive" src="images/site/news paper2.jpg" alt="tv">Maharashtra Times :: "CutOffSearch Information"
-                </a>
-                <br>
-                <a class="ng-scope" target="_blank" href="http://epaperbeta.timesofindia.com//Article.aspx?eid=31835&articlexml=21062014008016">
-                  <img class="img-responsive" src="images/site/sakal.jpg" alt="tv">Sakal Aurangabad : "CutOffSearch Information"
-                </a>
-                <br>
-                <a class="ng-scope" target="_blank" href="http://epaperbeta.timesofindia.com//Article.aspx?eid=31835&articlexml=21062014008016">
-                  <img class="img-responsive" src="images/site/divya-marathi.jpg" alt="tv">Divya Marathi :  "CutOffSearch and Admission Info"
-                </a>
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4 page-content col-thin-right">
-          <div class="inner-box category-content">
-            <h2>Events </h2>
-            <div class="color-border"></div>
-            <ul class="cat-list arrow">
-                  <li>
-                    <a href="#"> Apparel (1,386) </a>
-                  </li>
-                  <li>
-                    <a href="#"> Art (1,163) </a>
-                  </li>
-                  <li>
-                    <a href="#"> Business Opportunities (4,974) </a>
-                  </li>
-                  <li>
-                    <a href="#"> Community and Events (1,258) </a>
-                  </li>
-
-                  <li>
-                    <a href="#"> Jobs and Employment (3,609) </a>
-                  </li>
-                  <li>
-                    <a href="#"> Art (1,163) </a>
-                  </li>
-                </ul>
-          </div>
-        </div>
-      </div>
-    <br>
-   </div>
-     </div>
-      <div class="page-info" style="background: url(images/login.jpg); background-size:cover">
-        <div class="container text-center section-promo">
-          <div class="row">
-            <div id="carousel-example" ng-non-bindable class="carousel slide" data-ride="carousel">
-              <!-- Wrapper for slides -->
-    <div class="row">
-        <div class="col-xs-offset-2 col-xs-8">
-            <div class="carousel-inner">
-                <div class="item active">
-                    <div class="carousel-content">
-                        <div>
+            <div style="background: url(images/login.jpg); background-size:cover">
+              <div id="carousel-example" ng-non-bindable class="carousel slide" data-ride="carousel">
+              <div class="row">
+                  <div class="col-xs-offset-2 col-xs-8">
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <div class="carousel-content">
+                                  <div>
                             <h3><img alt="user" src="images/sir_jadhav.jpg" class="userImg"></h3><br>
                             <h4><p><i>"This web portal is very helpful for 10th and 12th passed students for choosing right career path in technical education and selection of best polytechnics and Engineering colleges in Maharashtra State. Really I appreciate and congratulation to team of Getstalt for launching technical institute Cutoff search web portal."</i></p>
                            <p>Dr. V. K. Jadhav (Ph. D., IITB), HOD, EE Dept, Government Polytechnic, Latur</p></h4>
@@ -261,6 +219,115 @@
     <a class="right carousel-control" href="#carousel-example" data-slide="next"><span class="icon-next"></i></a>
 
       </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 page-content col-thin-right">
+          <div class="inner-box category-content">
+            <h2>Media Coverage </h2>
+            <div class="color-border"></div>
+            <ul class="cat-list arrow">
+                  <li>
+                    <a class="ng-scope" target="_blank" ng-href="http://epaperbeta.timesofindia.com//Article.aspx?eid=31835&articlexml=21062014008016">
+                      <img class="img-responsive" src="images/site/times-of-india-logo.jpg" alt="Times of India cutoff news">
+                    </a>
+                  </li>
+                  <li>
+                    <a class="ng-scope" target="_blank" ng-href="images/divyamarathi-add.jpg">
+                      <img class="img-responsive" src="images/site/divya-marathi-logo.jpg" alt="Divya Marathi Cutoff search news">
+                    </a>
+                  </li>
+                  <li>
+                    <a class="ng-scope" target="_blank" ng-href="images/sakal-add.jpg">
+                      <img class="img-responsive" src="images/site/sakal-logo.jpg" alt="Sakal cutoffsearch news">
+                    </a>
+                  </li>
+                </ul>
+          </div>
+        </div>
+        <!-- <div class="col-sm-4 page-content col-thin-right">
+          <div class="inner-box category-content">
+            <h2>Events </h2>
+            <div class="color-border"></div>
+            <ul class="cat-list arrow">
+                  <li>
+                    <a href="#"> Apparel (1,386) </a>
+                  </li>
+                  <li>
+                    <a href="#"> Art (1,163) </a>
+                  </li>
+                  <li>
+                    <a href="#"> Business Opportunities (4,974) </a>
+                  </li>
+                  <li>
+                    <a href="#"> Community and Events (1,258) </a>
+                  </li>
+
+                  <li>
+                    <a href="#"> Jobs and Employment (3,609) </a>
+                  </li>
+                  <li>
+                    <a href="#"> Art (1,163) </a>
+                  </li>
+                </ul>
+          </div>
+        </div> -->
+      </div>
+    <br>
+   </div>
+     </div>
+      <div class="page-info" style="background: url(images/login.jpg); background-size:cover">
+        <div class="container text-center section-promo">
+          <div class="row">
+            <!-- <div id="carousel-example" ng-non-bindable class="carousel slide" data-ride="carousel">
+              <div class="row">
+                  <div class="col-xs-offset-2 col-xs-8">
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <div class="carousel-content">
+                                  <div>
+                            <h3><img alt="user" src="images/sir_jadhav.jpg" class="userImg"></h3><br>
+                            <h4><p><i>"This web portal is very helpful for 10th and 12th passed students for choosing right career path in technical education and selection of best polytechnics and Engineering colleges in Maharashtra State. Really I appreciate and congratulation to team of Getstalt for launching technical institute Cutoff search web portal."</i></p>
+                           <p>Dr. V. K. Jadhav (Ph. D., IITB), HOD, EE Dept, Government Polytechnic, Latur</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_patil.jpg" class="userImg"></h3><br>
+                            <h4> <p><i>"Congratulation to team of Gestalt for launching the excellent innovative web portal for students which is very useful for choosing the right career path in polytechnic and engineering education."</i></p>
+                            <p>Prof. S. N. Patil, Director, Narhe Campus, JSPM, Pune.</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_zine.jpg" class="userImg"></h3> <br>
+                           <h4> <p><i>"Fantastic experience while going through ur website. Its gr8 to have such a concise and informative web portal. All engg. aspirants may be able to search what they want at the tip of finger. No need to consult any professional for option form related or college selection related guidance. Great efforts by u and ur team... KUDOS!!!"
+                          </i></p>
+                          <p>Pankaj U. Zine, Research Associate, Mech. Engg. Dept., IIT Delhi.</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_goud.jpg" class="userImg"></h3> <br>
+                           <h4>  <p><i>"One of the best search engine for the students admitted in engineering. Students can search last year cutoff and details of the respective colleges on a single click.So this is a one place solution for students. I thankful to Gestalt IT Consultancy Pvt. Ltd. Pune for such a great innovation."</i></p>
+                          <p>Prof. Laxmikant J Goud, HOD CSE, VIT Pune Latur Campus, Latur</p></h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-example" data-slide="prev"><span class="icon-prev"></span></a>
+    <a class="right carousel-control" href="#carousel-example" data-slide="next"><span class="icon-next"></i></a>
+
+      </div> -->
     </div>
   </div>
 </div>

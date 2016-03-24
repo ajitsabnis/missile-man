@@ -129,11 +129,16 @@ angular
       controller: 'AboutUsCtrl',
       data: {}
     })
-     .state( 'download', {
+    .state( 'download', {
       url: '/download',
       templateUrl: 'views/download.html',
       controller: 'DownloadCtrl',
       data: {}
+    })
+    .state( 'under-construction', {
+      url: '/under-construction',
+      templateUrl: 'views/page-under-contruction.html',
+      controller: 'AboutUsCtrl'
     });
   }])
   .config(['$resourceProvider', function($resourceProvider) {
@@ -150,4 +155,8 @@ angular
   .run(function($rootScope) {
     var mobileRegex = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/;
     $rootScope.isMobileDevice = mobileRegex.test(navigator.userAgent);
+
+    $rootScope.$on('$stateChangeError', function() {
+      console.log(arguments);
+    });
   });
