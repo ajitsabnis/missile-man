@@ -1,0 +1,141 @@
+<div class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <a href="#">
+          <img alt="" src="images/site/adbanner2.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner1.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner3.gif" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner5.gif" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner6.gif" class="img-responsive">
+        </a>
+        <br>
+      </div>
+      <div class="col-sm-6 page-content col-thin-right">
+        <div class="inner-box category-content">
+          <h2>College Search - {{stream}} - (2014-15 Data)</h2>
+          <div class="color-border"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <form name="cutoffCollegeForm" class="form-horizontal" novalidate >
+                <fieldset>
+                    <!-- Percentage -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Percentage
+                      <sup>*</sup>
+                    </label>
+                    <div class="col-md-6">
+                      <input type="text" placeholder="Ex. 78.33, 73 etc" ng-model="percentageSearch.percentage" class="form-control" ng-pattern="/^[1-9]{1}[0-9]{1}$/" />
+                    </div>
+                  </div>
+                  <!-- District -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">District
+                      <sup>*</sup>
+                    </label>
+                    <div class="col-md-6">
+                      <select name="category" id="category" ng-model="percentageSearch.district" class="form-control" ng-change="loadCutoffDetails()">
+                        <option value="">Select the district...</option>
+                        <option ng-repeat="di in metadata.districts" value="{{di.value}}">{{di.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                <!-- Seat Type -->
+                <div class="form-group" ng-show="metadata.seatTypes.length">
+                  <label class="col-md-4 control-label">Seat Type
+                    <sup>*</sup>
+                  </label>
+                  <div class="col-md-6">
+                    <select name="seatType" id="seatType" ng-model="percentageSearch.seatType" class="form-control"
+                    ng-change="changeSeatType()">
+                      <option value="">Select the seat type...</option>
+                      <option ng-repeat="st in metadata.seatTypes" value="{{st.value}}">{{st.label}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group"
+                ng-hide="metadata.genders.length===0">
+                <label class="col-md-4 control-label">Gender
+                  <sup>*</sup>
+                </label>
+                <div class="col-md-6">
+                  <select name="gender" id="gender" ng-model="percentageSearch.gender" class="form-control" ng-change="changeGender()">
+                    <option value="">Select the Gender...</option>
+                    <option ng-repeat="g in metadata.genders" value="{{g.value}}">{{g.label}}</option>
+                  </select>
+                </div>
+              </div>
+
+                <!-- Category -->
+                <div class="form-group"
+                  ng-hide="metadata.categories.length===0">
+                  <label class="col-md-4 control-label">Category
+                    <sup>*</sup>
+                  </label>
+                  <div class="col-md-6">
+                    <select name="category" id="category" ng-model="percentageSearch.category" class="form-control" ng-change="changeCategory()">
+                      <option value="">Select the category...</option>
+                      <option ng-repeat="c in metadata.categories" value="{{c.value}}">{{c.label}}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <!-- Dist Types -->
+                <div class="form-group" ng-hide="metadata.distTypes.length===0">
+                  <label class="col-md-4 control-label">Distict Type
+                    <sup>*</sup>
+                  </label>
+                  <div class="col-md-6">
+                    <select name="distType" id="distType" ng-model="percentageSearch.distType" class="form-control" ng-change="districtChanged=true">
+                      <option value="">Select the District Type...</option>
+                      <option ng-repeat="d in metadata.distTypes" value="{{d.value}}">{{d.label}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-6">
+                    <button class="btn btn-primary" ng-disabled="enableSubmit()"  ng-click="submit()">Submit</button>
+                  </div>
+                </div>
+
+              </form>
+              <fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <a href="#">
+          <img alt="" src="images/site/adbanner1.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/add2.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/add3.jpg" class="img-responsive">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

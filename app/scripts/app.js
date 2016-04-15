@@ -70,6 +70,11 @@ angular
         templateUrl: 'views/cutoff_college_search.html',
         controller: 'CutoffCollegeSearchCtrl'
       })
+      .state('cutoff-percentage-search', {
+        url: '/cutoff-percentage-search/:stream',
+        templateUrl: 'views/cutoff_percentage_search.html',
+        controller: 'CutoffPercentageSearchCtrl'
+      })
       .state('cutoff-dse-college-search', {
         url: '/cutoff-dse-college-search/:stream',
         templateUrl: 'views/cutoff_dse_college_search.html',
@@ -92,12 +97,16 @@ angular
                 criteria: searchParams.criteria
               } );
             } else {
-              return collegeSearch.cutoff().get( {
+              searchParams.collegeSearch = searchParams.collegeSearch || {};
+              searchParams.collegeSearch.district = searchParams.collegeSearch.district || searchParams.percentageSearch.district;
+               
+              return collegeSearch.cutoff(false, searchParams.percentage).get( {
                 stream: searchParams.stream,
                 course: searchParams.course,
                 district: searchParams.collegeSearch.district,
                 collegeId: searchParams.collegeSearch.collegeId,
-                criteria: searchParams.criteria
+                criteria: searchParams.criteria,
+                percent: searchParams.percentage
               } );  
             }   
           }

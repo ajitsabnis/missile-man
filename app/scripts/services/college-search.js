@@ -20,11 +20,15 @@ angular.module('missileManApp')
       });
     };
 
-    cutoffFn = function(isDse) {
+    cutoffFn = function(isDse, isPercentage) {
       if(isDse) {
         return $resource(apiUrl.COLLEGE_DSE_CUTOFF);  
       } else {
-        return $resource(apiUrl.COLLEGE_CUTOFF);  
+          if(isPercentage) {
+            return $resource(apiUrl.PERCENTAGE_CUTOFF);
+          } else {
+            return $resource(apiUrl.COLLEGE_CUTOFF);    
+          }
       }
     };
 

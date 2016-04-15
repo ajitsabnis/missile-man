@@ -22,6 +22,7 @@ angular.module('missileManApp')
       'CUTOFF_DETAILS': BASE_URL + 'cutoff',
       'CUTOFF_DSE_DETAILS': BASE_URL + 'cutoff/dse',
       'COLLEGE_CUTOFF': BASE_URL + 'colleges/cutoff/:id',
+      'PERCENTAGE_CUTOFF': BASE_URL + 'cutoff/percentage/:percentage',
       'COLLEGE_DSE_CUTOFF': BASE_URL + 'colleges/dsecutoff/:id',
       'CONTACTUS': BASE_URL + 'contactus',
       'REQUEST': BASE_URL + 'contactus/request',

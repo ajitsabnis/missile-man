@@ -25,7 +25,7 @@ angular.module('missileManApp')
 
     loginSuccess = function( resp ) {
       if( resp.data.status === 301 ) {
-        loginError( resp );
+        loginError();
         return;
       }
       var config = {
@@ -48,7 +48,7 @@ angular.module('missileManApp')
       $state.go( 'dashboard' );
     };
 
-    loginError = function( resp ) {
+    loginError = function() {
       var config = {
         title: 'Error Login',
         message: 'Login Failed. Please try again with correct username and password',
