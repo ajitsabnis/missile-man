@@ -70,20 +70,36 @@ angular
         templateUrl: 'views/cutoff_college_search.html',
         controller: 'CutoffCollegeSearchCtrl'
       })
+      .state('cutoff-dse-college-search', {
+        url: '/cutoff-dse-college-search/:stream',
+        templateUrl: 'views/cutoff_dse_college_search.html',
+        controller: 'CutoffDseCollegeSearchCtrl'        
+      })
       .state('cutoff-college-result', {
         url: '/cutoff-college-result/:stream',
         templateUrl: 'views/cutoff_college_result.html',
         controller: 'CutoffCollegeResultCtrl',
         resolve: {
           collegeResult: function(collegeSearch, dataContainer) {
-            var searchParams = dataContainer.cutoffCollege;
-            return collegeSearch.cutoff().get( {
-              stream: searchParams.stream,
-              course: searchParams.course,
-              district: searchParams.collegeSearch.district,
-              collegeId: searchParams.collegeSearch.collegeId,
-              criteria: searchParams.criteria
-            } );
+            var searchParams = dataContainer.cutoffCollege,
+                isDse = dataContainer.cutoffCollege.isDse;
+            if(isDse) {
+              return collegeSearch.cutoff(isDse).get( {
+                stream: searchParams.stream,
+                course: searchParams.course,
+                district: searchParams.collegeSearch.district,
+                collegeId: searchParams.collegeSearch.collegeId,
+                criteria: searchParams.criteria
+              } );
+            } else {
+              return collegeSearch.cutoff().get( {
+                stream: searchParams.stream,
+                course: searchParams.course,
+                district: searchParams.collegeSearch.district,
+                collegeId: searchParams.collegeSearch.collegeId,
+                criteria: searchParams.criteria
+              } );  
+            }   
           }
         }
       })

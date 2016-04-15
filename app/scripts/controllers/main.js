@@ -8,13 +8,12 @@
  * Controller of the missileManApp
  */
 angular.module('missileManApp')
-  .controller('MainCtrl',['$scope', '$state', 'dataContainer', 'districts', 'csStreams', 'csCourses', '$modal', '$timeout',
-  function ($scope, $state, dataContainer, districts, csStreams, csCourses, $modal, $timeout ) {
+  .controller('MainCtrl',['$scope', '$state', 'dataContainer', 'districts', 'csStreams', 'csCourses', '$modal', '$timeout', '$rootScope',
+  function ($scope, $state, dataContainer, districts, csStreams, csCourses, $modal, $timeout, $rootScope) {
     var init;
 
     $scope.find = function () {
       dataContainer.homeSearch = $scope.search;
-      console.log( dataContainer );
       $state.go('college-search');
     };
 
@@ -42,6 +41,11 @@ angular.module('missileManApp')
 
       $scope.search = {};
       $scope.search.district = null;
+
+      if(sessionStorage.getItem('userLoginStatus') === 'loggedIn') {
+        $rootScope.showDashboardNav = true;
+      }
+
       districts.$promise.then( function() {
         $scope.districts = districts.data;
       });
@@ -72,8 +76,16 @@ angular.module('missileManApp')
       };
 
       $timeout( function () {
-        $scope.open();
-        $scope.modalOpen = true;
+        if($rootScope.isMobileDevice) {
+          $scope.open();
+          $scope.modalOpen = true;          
+        } else {
+          if(!sessionStorage.getItem('likeUsPopup')) {
+            sessionStorage.setItem('likeUsPopup', 'true');
+            $scope.open();
+            $scope.modalOpen = true;          
+          }
+        }
       }, 2000);
 
       var date = new Date();

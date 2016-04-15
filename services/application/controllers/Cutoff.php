@@ -197,5 +197,51 @@ class Cutoff extends CosRestController
     $this->response(array("data"=> $res->result(),
       "query" => $query));
   }
+
+  public function dse_get($id=0)
+  {
+    $this->load->database();
+    $tableName = 'cosCutoff_2015_dse';
+
+    // $query= "SELECT distinct seatType as csSeatType, CASE LEFT(seatType , 1)
+    //             when 'N' THEN 'Non Technical'
+    //             when 'T' THEN 'Technical'
+    //             when 'M' THEN 'Minority'
+    //             when 'P' THEN 'Physically Handicaped'
+    //             when 'D' THEN 'Defence'
+    //             when 'G' THEN 'General'
+    //             when 'L' THEN 'Ladies'
+    //             when 'O' THEN 'OMS'
+    //             when 'A' THEN 'AI'
+    //           else 'ZZZ'
+    //           end As 'Label'";
+
+    $query= "SELECT distinct seatType as csSeatType, CASE LEFT(seatType , 1)
+                    when 'P' THEN 'Physically Handicaped'
+                    when 'D' THEN 'Defence'
+                    when 'G' THEN 'General'
+                    when 'L' THEN 'Ladies'
+                    when 'C' THEN 'Minority'
+                  else 'ZZZ'
+                  end As 'Label'";
+    // if($this->get('stream') === "MCA" || $this->get('stream') === "Management" || $this->get('stream') === "Hotel Management" || $this->get('stream') === "Engineering" ){
+    //   $query.= ", CONCAT(LEFT(seatType , 1), '@', SUBSTRING(seatType , 2)) as 'csSeatType' ";
+    // }
+
+    $query.="FROM cosColleges INNER JOIN cosCourses
+      ON cosCourses.collegeId = cosColleges.id
+      INNER JOIN $tableName
+      ON cosCourses.id = courseId ";
+
+    $query .= "WHERE cosCourses.stream='".$this->get('stream')."' ";
+    $query .= "AND cosColleges.district='".$this->get('district')."' ";
+    $query .= "AND branch='".$this->get('course')."' ";
+    $query .= "AND cosColleges.id = ".$this->get('id');
+
+    $res = $this->db->query($query);
+
+    $this->response(array("data"=> $res->result(),
+      "query" => $query));
+  }
 }
 ?>

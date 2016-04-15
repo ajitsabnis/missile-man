@@ -78,10 +78,6 @@ class Colleges extends CosRestController
   public function cutoff_get($id=0)
   {
     $this->load->database();
-
-    $this->load->database();
-    // $this->db->select('*');
-
     $tableName = "";
 
     if($this->get('stream') === "MCA" ){
@@ -136,6 +132,42 @@ class Colleges extends CosRestController
 
     $query = $this->db->get();
 
+    $this->response(array("data" => $query->result(), 'query'=>$this->db->last_query()));
+
+  }
+
+  public function dsecutoff_get($id=0) {
+    
+    $this->load->database();
+    $tableName = "cosCutoff_2015_dse";
+
+    if($this->get('criteria') == 'P' || $this->get('criteria') == 'D' || $this->get('criteria') == 'C'){
+      $this->db->select("CONCAT(cosCourses.name, ' - ', seatType)  as courseName");
+    } else {
+      $this->db->select('cosCourses.name as courseName');
+    }
+    $this->db->select('cosCourses.type as courseType');
+    $this->db->select('seatType');
+    $this->db->select('percentage');
+    $this->db->select('meritNo as merit');
+
+
+    $this->db->select('courseId as code');
+    $this->db->select('round');
+    $this->db->select('groupName');
+
+    $this->db->from('cosColleges');
+    $this->db->join('cosCourses', 'cosCourses.collegeId = cosColleges.id', 'inner');
+    $this->db->join($tableName, 'cosCourses.id = courseId', 'inner');
+
+    $this->db->where('cosColleges.district', $this->get('district'));
+    $this->db->where('cosColleges.id', $this->get('collegeId'));
+    if($this->get('criteria') == 'P' || $this->get('criteria') == 'D' || $this->get('criteria') == 'C'){
+      $this->db->like('seatType', $this->get('criteria'), 'after');
+    } else {
+      $this->db->where('seatType', $this->get('criteria'));
+    }
+    $query = $this->db->get();
     $this->response(array("data" => $query->result(), 'query'=>$this->db->last_query()));
 
   }

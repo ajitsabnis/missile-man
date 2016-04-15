@@ -33,7 +33,7 @@ class Users extends CosRestController
         'csDistrict' => $this->post('district'),
         'csAboutMe' => $this->post('aboutMe'),
         'csEmail' => $this->post('email'),
-        'isBlock' => 1,
+        'isBlock' => 0, //Disabling OTP
         'csOtp'=> $tempOtp,
         'csPassword' => MD5($this->post('password')),
         'ipAddress' => $this->input->ip_address(),
@@ -59,18 +59,21 @@ class Users extends CosRestController
         );
 
 	$urlLink = 'http://www.cutoffsearch.com/services/index.php/users/verify?mobile='.element( 'csPhone', $user ).'&otp='.$tempOtp.'&hash='.md5(rand(100,500));
+
+        $userFullName = $this->post('firstName') . ' ' . $this->post('lastName');
         $mailData = array(
           'phone' => element( 'csPhone', $user ),
           'otp' => $tempOtp,
-          'urlLink' => $urlLink
+          'urlLink' => $urlLink,
+          'name' => $userFullName
         );
         $this->email->initialize($config);
         $this->email->from('support@cutoffsearch.com', 'Cutoff Support');
         $this->email->set_mailtype('html');
         $this->email->to($this->post('email'));
         $this->email->bcc('vishnutekale13@gmail.com');
-        $this->email->subject('Cutoffsearch Signup | Verification');
-        $html_email = $this->load->view('mail/templatemail', $mailData, true);
+        $this->email->subject('Cutoffsearch Signup');
+        $html_email = $this->load->view('mail/templatewithoutotpmail', $mailData, true);
         $this->email->message($html_email);
         $this->email->send();
 

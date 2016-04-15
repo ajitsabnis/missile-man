@@ -70,9 +70,27 @@ angular.module('missileManApp')
         return;
       }
 
+      // var config = {
+      //   title: 'Congratulations..!!',
+      //   message: 'You have registered successfully. Please enter OTP or click on link in the email.',
+      //   okText: 'Ok',
+      //   cancelText: 'Cancel',
+      //   showOK: true,
+      //   showCancel: true,
+      //   successCallback: function() {
+      //     // $state.go( 'authorise' );
+      //   },
+      //   errorCallback: function() {
+      //     // alert('error');
+      //   }
+      // };
+      // csNotication.handle( config );
+      // $state.go( 'authorise' );
+
+
       var config = {
         title: 'Congratulations..!!',
-        message: 'You have registered successfully. Please enter OTP or click on link in the email.',
+        message: 'You have registered successfully. Please login with your phone number and password.',
         okText: 'Ok',
         cancelText: 'Cancel',
         showOK: true,
@@ -85,7 +103,7 @@ angular.module('missileManApp')
         }
       };
       csNotication.handle( config );
-      $state.go( 'authorise' );
+      $state.go( 'login' );
     };
 
     userSaveError = function( data ) {
@@ -93,7 +111,7 @@ angular.module('missileManApp')
       // console.log('in user save error');
       var config = {
         title: 'Error..!!',
-        message: data.data.message,
+        message: data.data ? data.data.message : 'Unable to register. Please contact cutoffsearch admin',
         okText: 'Contact Us',
         cancelText: 'Cancel',
         showOK: true,

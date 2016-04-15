@@ -183,7 +183,7 @@ angular.module('missileManApp')
 
     $scope.loadCutoffDetails = function() {
       resetAll(true);
-      csCutoff.get({
+      csCutoff.get().get({
         course: $scope.course,
         stream: $scope.stream,
         district: $scope.collegeSearch.district,

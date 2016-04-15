@@ -5,8 +5,10 @@
         <div class="inner-box category-content">
           <h2>Result {{resultList.length}} found</h2>
           <div class="color-border"></div>
-          <button type="button" class="btn btn-success btn-sm"style="float: right;" print-div>Print</button>
-          <button type="button" class="btn btn-primary btn-sm"redirectto-back>Back</button>
+          <button type="button" class="btn btn-success btn-sm" style="float: right;" print-div>
+            Print
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" redirectto-back>Back</button>
           <div class="row">
             <div class="col-md-12" id="printable">
               <table class="table table-striped">
@@ -18,6 +20,7 @@
                     <th>Percentage</th>
                     <th>Merit No.</th>
                     <th>CAP Round</th>
+                    <th ng-if="isDse">Group Name</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -28,6 +31,11 @@
                     <td>{{r.percentage}}</td>
                     <td>{{r.merit}}</td>
                     <td>{{r.round}}</td>
+                    <td ng-if="isDse">
+                      <span ng-if="r.groupName === 'S'">Sub Group</span>
+                      <span ng-if="r.groupName === 'M'">Main Group</span>
+                      <span ng-if="r.groupName === 'O'">Other Group</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>

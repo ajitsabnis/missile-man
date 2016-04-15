@@ -107,7 +107,7 @@ class Contactus extends CosRestController
 		$this->email->set_newline("\r\n");
 		$this->email->from('cutoffsearch76@gmail.com', 'cutoffsearch support');
 		$this->email->reply_to('cutoffsearch76@gmail.com');
-		$this->email->to('vkulkarni@onshape.com');
+		$this->email->to('vishnutekale13@gmail.com');
 		
 		$this->email->subject('Cutoff - Contact us');
 		$html_email = $this->load->view('mail/requestmail', $mailData, true);
