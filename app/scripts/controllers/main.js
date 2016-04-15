@@ -8,13 +8,12 @@
  * Controller of the missileManApp
  */
 angular.module('missileManApp')
-  .controller('MainCtrl',['$scope', '$state', 'dataContainer', 'districts', 'csStreams', 'csCourses',
-  function ($scope, $state, dataContainer, districts, csStreams, csCourses ) {
+  .controller('MainCtrl',['$scope', '$state', 'dataContainer', 'districts', 'csStreams', 'csCourses', '$modal', '$timeout', '$rootScope',
+  function ($scope, $state, dataContainer, districts, csStreams, csCourses, $modal, $timeout, $rootScope) {
     var init;
 
     $scope.find = function () {
       dataContainer.homeSearch = $scope.search;
-      console.log( dataContainer );
       $state.go('college-search');
     };
 
@@ -42,6 +41,11 @@ angular.module('missileManApp')
 
       $scope.search = {};
       $scope.search.district = null;
+
+      if(sessionStorage.getItem('userLoginStatus') === 'loggedIn') {
+        $rootScope.showDashboardNav = true;
+      }
+
       districts.$promise.then( function() {
         $scope.districts = districts.data;
       });
@@ -54,6 +58,39 @@ angular.module('missileManApp')
       $scope.search.course = null;
       // $scope.courses =  [{name: 'Advance Diploma',value: 'Advance Diploma',stream: 'Other Advance Diplom'},{name: 'Bachelor of Architecture',value: 'Bachelor of Architecture',stream: 'Architecture'},{name: 'Bachelor of Engineering (B. E.)',value: 'Bachelor of Engineering (B. E.)',stream: 'Engineering'},{name: 'Bachelor of Engineering (Direct Second Year)',value: 'Bachelor of Engineering (Direct Second Year)',stream: 'Engineering'},{name: 'Bachelor of H.M.C.T.',value: 'Bachelor of H.M.C.T.',stream: 'Hotel Management'},{name: 'Bachelor of Pharmacy',value: 'Bachelor of Pharmacy',stream: 'Pharmacy'},{name: 'Bachelor of Technology (B. Tech.)',value: 'Bachelor of Technology (B. Tech.)',stream: 'Engineering'},{name: 'Certificate Course',value: 'Certificate Course',stream: 'Other Advance Diplom'},{name: 'Dual Degree Course in Management',value: 'Dual Degree Course in Management',stream: 'Management'},{name: 'Dual Degree Course in MCA',value: 'Dual Degree Course in MCA',stream: 'MCA'},{name: 'Integrated Program in Management',value: 'Integrated Program in Management',stream: 'Management'},{name: 'M.B.A./M.M.S.',value: 'M.B.A./M.M.S.',stream: 'Management'},{name: 'M.Text.',value: 'M.Text.',stream: 'Engineering'},{name: 'Master in Computer Application (Direct Second Year',value: 'Master in Computer Application (Direct Second Year',stream: 'N/A'},{name: 'Master in Computer Application (M.C.A.)',value: 'Master in Computer Application (M.C.A.)',stream: 'MCA'},{name: 'Master of Architecture',value: 'Master of Architecture',stream: 'Architecture'},{name: 'Master of Engineering (M. E.)',value: 'Master of Engineering (M. E.)',stream: 'Engineering'},{name: 'Master of H.M.C.T.',value: 'Master of H.M.C.T.',stream: 'Hotel Management'},{name: 'Master of Pharmacy',value: 'Master of Pharmacy',stream: 'Pharmacy'},{name: 'Master of Technology (M. Tech.)',value: 'Master of Technology (M. Tech.)',stream: 'Engineering'},{name: 'Non-AICTE',value: 'Non-AICTE',stream: 'Other Advance Diplom'},{name: 'P.G.D.M. (Autonomous)',value: 'P.G.D.M. (Autonomous)',stream: 'Management'},{name: 'Pharma D',value: 'Pharma D',stream: 'Pharmacy'},{name: 'Post Diploma (Non AICTE)',value: 'Post Diploma (Non AICTE)',stream: 'Engineering '},{name: 'Post Diploma Program in Engineering & Technology',value: 'Post Diploma Program in Engineering & Technology',stream: 'Engineering'},{name: 'Post Graduate Certificate in management',value: 'Post Graduate Certificate in management',stream: 'Management'},{name: 'Post Graduate Degree (Excluding MBA/MMS)',value: 'Post Graduate Degree (Excluding MBA/MMS)',stream: 'Management'},{name: 'Post Graduate Diploma (NON-AICTE MSBTE Approved)',value: 'Post Graduate Diploma (NON-AICTE MSBTE Approved)',stream: 'Other Advance Diplom'},{name: 'Post Graduate Diploma In Management (University Affiliated)',value: 'Post Graduate Diploma In Management (University Affiliated)',stream: 'Management'},{name: 'Post H.S.C. Diploma in H.M.C.T.',value: 'Post H.S.C. Diploma in H.M.C.T.',stream: 'Hotel Management'},{name: 'Post H.S.C. Diploma in Pharmacy (D. Pharm.)',value: 'Post H.S.C. Diploma in Pharmacy (D. Pharm.)',stream: 'Pharmacy'},{name: 'Post H.S.C. Diploma in Surface Coating Technology',value: 'Post H.S.C. Diploma in Surface Coating Technology',stream: 'Other Advance Diplom'},{name: 'Post S.S.C. Diploma in Engineering (Polytechnics)',value: 'Post S.S.C. Diploma in Engineering (Polytechnics)',stream: 'Polytechnic'}];
 
+      $scope.modalOpen = false;
+
+      $scope.open = function () {
+        var modalInstance = $modal.open({
+          templateUrl: 'views/like-cutoff.html',
+          controller: 'LikeCutoffCtrl',
+          size: 'sm'
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+          console.log('**Modal dismissed at: ' + new Date());
+          $scope.modalOpen = false;
+        });
+      };
+
+      $timeout( function () {
+        if($rootScope.isMobileDevice) {
+          $scope.open();
+          $scope.modalOpen = true;          
+        } else {
+          if(!sessionStorage.getItem('likeUsPopup')) {
+            sessionStorage.setItem('likeUsPopup', 'true');
+            $scope.open();
+            $scope.modalOpen = true;          
+          }
+        }
+      }, 2000);
+
+      var date = new Date();
+      $scope.todaysDate = date.getDate();
+      $scope.todaysDate += 3;
     };
 
     init();

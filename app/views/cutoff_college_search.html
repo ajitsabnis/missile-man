@@ -92,7 +92,7 @@
                     <sup>*</sup>
                   </label>
                   <div class="col-md-6">
-                    <select name="category" id="category" ng-model="collegeSearch.category" class="form-control" ng-click="changeCategory()">
+                    <select name="category" id="category" ng-model="collegeSearch.category" class="form-control" ng-change="changeCategory()">
                       <option value="">Select the category...</option>
                       <option ng-repeat="c in metadata.categories" value="{{c.value}}">{{c.label}}</option>
                     </select>
@@ -107,7 +107,7 @@
                     <sup>*</sup>
                   </label>
                   <div class="col-md-6">
-                    <select name="distType" id="distType" ng-model="collegeSearch.distType" class="form-control">
+                    <select name="distType" id="distType" ng-model="collegeSearch.distType" class="form-control" ng-change="districtChanged=true">
                       <option value="">Select the District Type...</option>
                       <option ng-repeat="d in metadata.distTypes" value="{{d.value}}">{{d.label}}</option>
                     </select>
@@ -117,7 +117,7 @@
                 <div class="form-group">
                   <div class="col-md-4"></div>
                   <div class="col-md-6">
-                    <button class="btn btn-primary" ng-click="submit()">Submit</button>
+                    <button class="btn btn-primary" ng-disabled="enableSubmit()"  ng-click="submit()">Submit</button>
                   </div>
                 </div>
 

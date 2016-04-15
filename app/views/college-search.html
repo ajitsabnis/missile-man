@@ -4,34 +4,43 @@
       <div class="dtable-cell hw100">
         <div class="container text-center">
 
-          <p class="sub animateme fittext3 animated fadeIn">Explore colleges to redefine your career in Pune</p>
+          <p class="sub animateme fittext3 animated fadeIn">Explore colleges in Maharashtra to redefine your career</p>
           <div class="row search-row animated fadeInUp">
             <div class="col-lg-3 col-sm-3 search-col relative locationicon">
               <i class="icon-location-2 icon-append"></i>
-              <input type="text" name="country" id="autocomplete-ajax" class="form-control locinput input-rel searchtag-input has-icon" placeholder="City..." value="">
+              <ui-select ng-model="search.district" theme="selectize" ng-disabled="disabled" on-select="loadStreams($item, $model)">
+                <ui-select-match placeholder="District...">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="d in districts | filter: $select.search">
+                  <span ng-bind-html="d.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
             </div>
+
             <div class="col-lg-3 col-sm-3 search-col relative">
               <i class="icon-docs icon-append"></i>
-              <input type="text" name="ads" id="autocomplete-ajax1" class="form-control locinput input-rel searchtag-input has-icon" placeholder="I'm looking Branches..." value="">
+              <ui-select ng-model="search.stream" theme="selectize" ng-disabled="!search.district" on-select="loadCourses($item)">
+                <ui-select-match placeholder="Stream...">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="stream in streams | filter: $select.search">
+                  <span ng-bind-html="stream.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
             </div>
             <div class="col-lg-3 col-sm-3 search-col relative">
               <i class="icon-docs icon-append"></i>
 
-              <select class="form-control selecter  has-icon">
-
-                <option>Poly</option>
-                <option>BE-BTech</option>
-                <option>ME-MTech</option>
-                <option>MBA</option>
-                <option>MCA</option>
-                <option>B.Pharmsy</option>
-              </select>
+              <ui-select ng-model="search.course" theme="selectize" ng-disabled="!search.stream">
+                <ui-select-match placeholder="Course...">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="course in courses | filter: $select.search">
+                  <span ng-bind-html="course.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
             </div>
             <div class="col-lg-3 col-sm-3 search-col">
-              <button class="btn btn-primary btn-search btn-block">
+              <button class="btn btn-primary btn-search btn-block" ng-click="find()">
                 <i class="fa fa-search"></i>
                 <strong>Find</strong>
               </button>
+
             </div>
           </div>
         </div>
@@ -46,7 +55,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-3 page-sidebar">
+        <div class="col-sm-3 page-sidebar" ng-if="!isMobileDevice">
           <aside>
 
             <div class="inner-box no-padding">
@@ -94,7 +103,7 @@
             </div>
           </aside>
         </div>
-        <div class="col-sm-9 page-content">
+        <div class="page-content"  ng-class="{'col-sm-9': !isMobileDevice, 'col-sm-12': isMobileDevice}">
           <h2>
             <i class="fa fa-search fa-1x"></i> Search results {{collegeList.length}}
         </h2>
@@ -113,7 +122,7 @@
                           <i class="fa fa-camera"></i> 2
                         </span> -->
                         <a ui-sref="college-detail">
-                          <img class="thumbnail no-margin" src="images/college/tp/jspm.jpg" alt="img">
+                          <img class="thumbnail no-margin" src="images/college/coep.jpg" alt="img">
                         </a>
                       </div>
                     </div>
@@ -151,7 +160,7 @@
               </div>
             </div>
 
-            <div class="row coverfooter">
+           <!--<div class="row coverfooter">
               <div class="color-border"></div>
               <div class="col-sm-4 no-padding">
                 <div class="iconbox-wrap">
@@ -193,7 +202,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>-->
           <!-- <div class="pagination-bar text-right">
             <ul class="pagination">
               <li class="active"><a href="#">1</a>

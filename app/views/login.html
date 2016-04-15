@@ -11,10 +11,10 @@
           <div class="panel-body">
             <form name="loginForm" role="form" ng-submit="loginSubmit()">
               <div class="form-group required" ng-class="{'has-error': loginForm.userphone.$touched && loginForm.userphone.$error.required}">
-                <label for="sender-email" class="control-label">Phone Number:</label>
+                <label for="sender-email" class="control-label">Mobile Number:</label>
                 <div class="input-icon">
                   <i class="fa fa-user"></i>
-                  <input name="userphone" id="sender-email" type="text" placeholder="Phone number" class="form-control email" ng-model="user.phone" required>
+                  <input name="userphone" id="sender-email" type="text" placeholder="Mobile number" class="form-control email" ng-model="user.phone" required>
                 </div>
               </div>
               <div class="form-group required" ng-class="{'has-error': loginForm.userpassword.$touched && loginForm.userpassword.$error.required}">

@@ -20,6 +20,28 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->library('email');
+		echo "hello";
+		$config = array(
+			'wordwrap' => TRUE,
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://linux72.securednameservers.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'support@cutoffsearch.com',
+			'smtp_pass' => 'support@cos',
+			'mailtype' => 'html',
+			'charset' => 'utf-8'
+		);
+
+		$mailData = "Hello User,<br>User registered : abc@gmail.com";
+		$mailData .= "<br>Feedback : This is a sample reply";
+		$this->email->initialize($config);
+		$this->email->from('support@cutoffsearch.com');
+		$this->email->reply_to('support@cutoffsearch.com');
+		$this->email->to('vishnutekale13@gmail.com');
+		$this->email->cc('scriptofer@gmail.com');
+		$this->email->subject('Cutoff');
+		$this->email->message($mailData);
+		$this->email->send();
 	}
 }

@@ -6,7 +6,7 @@
       </button>
       <!-- <i data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle fa fa-bars fa-2x"></i> -->
       <a ui-sref="main" class="navbar-brand logo logo-title">
-        <img ng-src="images/logo.png" style="width:65%">
+        <img ng-src="images/logo.png" alt="cutoffsearch.com">
       </a>
     </div>
   <div class="navbar-collapse collapse">
@@ -44,8 +44,33 @@
           <a href ui-sref="contact-us">Contact Us</a>
         </li>
         <li class="postadd">
-          <a class="btn btn-block btn-border btn-post btn-danger" href ui-sref="login">Sign In</a>
+          <a class="btn btn-block btn-border btn-post btn-danger" ng-hide="showDashboardNav" href ui-sref="login">Sign In</a>
+           <a class="btn btn-block btn-border btn-post btn-danger" ng-show="showDashboardNav" href ui-sref="dashboard">Dashboard</a>
         </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              Actions
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href ui-sref="googlemaps">
+                  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                  Google Maps
+                </a>
+              </li>
+              <li>
+                <a href ui-sref="download">
+                  <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                  Download
+                </a>
+              </li>
+              <li>
+                <a href ui-sref="advertisewithus">
+
+                  <span class="glyphicon glyphicon-blackboard"></span>
+                  Advertise With Us
+                </a>
+              </li>
       </ul>
     </div>
   </div>

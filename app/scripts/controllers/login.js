@@ -9,8 +9,8 @@
  */
 angular.module('missileManApp')
   .controller('LoginCtrl',
-  ['$scope','userFactory', 'csNotication','$state',
-  function ($scope, userFactory, csNotication, $state) {
+  ['$scope','userFactory', 'csNotication','$state','$rootScope', '$stateParams',
+  function ($scope, userFactory, csNotication, $state, $rootScope, $stateParams) {
     var init,
         loginSuccess,
         loginError;
@@ -19,7 +19,7 @@ angular.module('missileManApp')
       $scope.user = {};
       // $scope.user.phone = '9422987456';
       // $scope.user.password = 'demo';
-      $scope.user.phone = '';
+      $scope.user.phone = $stateParams.phone ? $stateParams.phone : '';
       $scope.user.password = '';
     };
 
@@ -28,8 +28,6 @@ angular.module('missileManApp')
         loginError( resp );
         return;
       }
-      // console.log( 'success' );
-      // console.log( resp );
       var config = {
         title: 'Login',
         message: 'You have successfully logged in.',
@@ -45,12 +43,27 @@ angular.module('missileManApp')
         }
       };
       csNotication.handle( config );
+      sessionStorage.setItem('userLoginStatus', 'loggedIn');
+      $rootScope.showDashboardNav = true;
       $state.go( 'dashboard' );
     };
 
     loginError = function( resp ) {
-      console.log( 'error' );
-      console.log( resp );
+      var config = {
+        title: 'Error Login',
+        message: 'Login Failed. Please try again with correct username and password',
+        okText: 'Ok',
+        cancelText: 'Cancel',
+        showOK: true,
+        showCancel: true,
+        successCallback: function() {
+          // $state.go( 'authorise' );
+        },
+        errorCallback: function() {
+          // alert('error');
+        }
+      };
+      csNotication.handle( config );
     };
 
     $scope.loginSubmit = function() {

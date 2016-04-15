@@ -4,11 +4,11 @@
       <div class="dtable-cell hw100">
         <div class="container text-center">
           <!-- <h1 class="intro-title animated fadeInDown"> Cutoff Search Colleges</h1> -->
-          <p class="sub animateme fittext3 animated fadeIn">Explore colleges to redefine your career in Pune</p>
+          <p class="sub animateme fittext3 animated fadeIn">Explore colleges in Maharashtra to redefine your career</p>
           <div class="row search-row animated fadeInUp">
             <div class="col-lg-3 col-sm-3 search-col relative locationicon">
               <i class="icon-location-2 icon-append"></i>
-              <ui-select ng-model="search.district" theme="selectize" ng-disabled="disabled" on-select="loadStreams($item, $model)">
+              <ui-select ng-model="search.district" theme="bootstrap" ng-disabled="disabled" on-select="loadStreams($item, $model)" search-enabled="false">
                 <ui-select-match placeholder="District...">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="d in districts | filter: $select.search">
                   <span ng-bind-html="d.name | highlight: $select.search"></span>
@@ -19,7 +19,7 @@
             <div class="col-lg-3 col-sm-3 search-col relative">
               <i class="icon-docs icon-append"></i>
               <!-- <input type="text" name="ads" id="autocomplete-ajax1" class="form-control locinput input-rel searchtag-input has-icon" placeholder="I'm looking Branches..." value=""> -->
-              <ui-select ng-model="search.stream" theme="selectize" ng-disabled="!search.district" on-select="loadCourses($item)">
+              <ui-select ng-model="search.stream" theme="bootstrap" ng-disabled="!search.district" on-select="loadCourses($item)" search-enabled="false">
                 <ui-select-match placeholder="Stream...">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="stream in streams | filter: $select.search">
                   <span ng-bind-html="stream.name | highlight: $select.search"></span>
@@ -29,7 +29,7 @@
             <div class="col-lg-3 col-sm-3 search-col relative">
               <i class="icon-docs icon-append"></i>
 
-              <ui-select ng-model="search.course" theme="selectize" ng-disabled="!search.stream">
+              <ui-select ng-model="search.course" theme="bootstrap" ng-disabled="!search.stream" search-enabled="false">
                 <ui-select-match placeholder="Course...">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="course in courses | filter: $select.search">
                   <span ng-bind-html="course.name | highlight: $select.search"></span>
@@ -58,32 +58,50 @@
             <div class="color-border"></div>
             <div class="row">
               <div class="col-md-12 ">
-                <p>Gestalt IT Consultancy Pvt. Ltd. is working with public and private clients to transform the quality of global education, good governance and skills development. Everything we do is focused on making a tangible difference in the lives of
-                  learners, communities and nations, enabling students of all ages to be prepared to succeed in an increasingly competitive world.</p>
-
-                <p>After 10 or 10+2 board exams and after graduation most of the students are worried about choosing right career path and in the same process, one of the major concerns of every student/parent is about getting admission in the right institute
+                  <p>After 10 or 10+2 board exams and after graduation most of the students are worried about choosing right career path and in the same process, one of the major concerns of every student/parent is about getting admission in the right institute
                   for further studies. Due to heavy competition and centralized admission process, while filling application form student need to be very alert with providing information.</p>
 
                 <p>Our intensive research suggests following complexities are faced by students -</p>
-                <ul>
-                  <li>Selection of Branch i.e. "Which is suitable branch for me?</li>
-                  <li>Matching Marks with Fitting Institution i.e. "Which is the suitable institution matching with my marks?</li>
-                  <li>What was the last year’s cut-off mark?</li>
-                  <li>Availability of Institutions and their branches in Maharashtra State.</li>
+                  <ul class ="list-circle">
+                  <li> Availability of Institutions and their branches in Maharashtra State.</li>
+                  <li> Selection of Branch i.e. "Which is suitable branch for me?”</li>
+                  <li> "Which is the suitable institution matching with my marks?</li>
+                  <li> What was the last year’s cut-off mark?</li>
                 </ul>
                 <br>
 
-                <p>To provide solution, Gestalt IT Consultancy Pvt Ltd, Pune has launched this innovative web based portal for student.</p>
+                <p>To provide solution, Gestalt IT Consultancy Pvt Ltd, Pune has launched this innovative web based portal for student, Colleges,   Education Consultancies.</p>
 
-                <p>The portal provides information on following indicators -</p>
-                <ul>
-                  <li>Institute-wise cut-off list</li>
-                  <li>Branches</li>
-                  <li>List of all Engineering, Polytechnic colleges in Maharashtra state and information about yearly cut-off marks.</li>
-                </ul>
+                <p>The portal provides 2223 College information of following streams  </p>
+                <ul class="list-circle">
+                  <li> Polytechnic : Post SSC Diploma in Engineering </li>
+                  <li> Engineering:B.E. / B.Tech. / M.E. / M.Tech.</li>
+                  <li> Direct Second Year Engineering</li>
+                   <li> MCA</li>
+                    <li> Management:MBA / MMS / Dual Degree Course in Management / PGDM (Autonomous) / PG Diploma in Management </li>
+                    <li>Hotel Management:Bachelor of H.M.C.T. / Post H.S.C. Diploma in H.M.C.T. / Master of H.M.C.T.</li>
+                    <li>Architecture:  Bachelor of Architecture </li>
+                    <li>Pharmacy: D. Pharm. / B.Pharm. / M.Pharm. </li>
+                   </ul>
                 <br>
 
-                <p>This portal is useful for all the students who are willing to take admission in Engineering (First Year as well as Direct Second Year), or Polytechnic college.</p>
+                <p><h3>Cutoff Marks</h3></p>
+                 <p> Institute-wise cut-off list</p>
+                  <p> Branch-wise cut-off marks</p>
+                 <p>The portal provides cutoff marks for following streams</p>
+                 <ul class="list-circle">
+
+                  <li> Polytechnic</li>
+                  <li> Direct Second Year Engineering</li>
+                  <li> B. Pharmacy</li>
+                  <li> MBA </li>
+                  <li> MCA </li>
+                  <li> Hotel Management </li>
+                  <li> Bachelor of Architecture</li>
+                  <li> Engineering (For Merit number  reference  Only)</li>
+                  </ul>
+
+
 
               </div>
 
@@ -93,9 +111,9 @@
 
           </div>
           <div class="inner-box category-content">
-            <h2>About Us </h2>
+            <h2>Video</h2>
             <div class="color-border"></div>
-            <div class="row">
+            <div class="row" ng-if="!isMobileDevice">
               <div class="col-md-4 col-sm-4">
                 <iframe width="100%" src="https://www.youtube.com/embed/wabTLwy1zSk" frameborder="0" allowfullscreen></iframe>
               </div>
@@ -106,6 +124,17 @@
                 <iframe width="100%" src="https://www.youtube.com/embed/r3iTVIkuK4Y" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
+            <div class="row" ng-if="isMobileDevice">
+              <div class="col-md-12 col-sm-12" ng-if="todaysDate % 3 === 0">
+                <iframe width="100%" src="https://www.youtube.com/embed/wabTLwy1zSk" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="col-md-12 col-sm-12" ng-if="todaysDate % 3 === 1">
+                <iframe width="100%" src="https://www.youtube.com/embed/G7HejPG--kE" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="col-md-12 col-sm-12" ng-if="todaysDate % 3 === 2">
+                <iframe width="100%" src="https://www.youtube.com/embed/r3iTVIkuK4Y" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -113,21 +142,114 @@
           <aside>
             <div class="inner-box no-padding">
               <div class="inner-box-content">
-                <a href="#">
-                  <img class="img-responsive" src="images/site/app.jpg" alt="tv">
+                <a ng-href="https://play.google.com/store/apps/details?id=com.gestalt.cutoffSearch&amp;hl=en" target="_blank">
+                  <img class="img-responsive" src="/images/site/cutoff logo.png" alt="Cutoffsearch App">
                 </a>
               </div>
             </div>
             <div class="inner-box no-padding">
-              <img class="img-responsive" src="images/add2.jpg" alt="">
+              <a ng-href="https://play.google.com/store/apps/details?id=com.gestalt.cutoffSearch&amp;hl=en" target="_blank">
+              <img class="img-responsive" src="/images/site/app.jpg" alt="Cutoffsearch App">
+              </a>
             </div>
-            <div class="inner-box">
-              <h2>Events </h2>
-              <div class="color-border"></div>
-              <div class="inner-box-content">
+
+            <div class="inner-box category-content">
+               <h2>Facebook </h2>
+            <div class="color-border"></div>
+            <cs-facebook-dir></cs-facebook-dir>
+             </div>
 
 
-                <ul class="cat-list arrow">
+          </aside>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-9 page-content col-thin-right">
+          <div class="inner-box category-content">
+            <h2>Experts Openion</h2>
+            <div class="color-border"></div>
+            <div style="background: url(images/login.jpg); background-size:cover">
+              <div id="carousel-example" ng-non-bindable class="carousel slide" data-ride="carousel">
+              <div class="row">
+                  <div class="col-xs-offset-2 col-xs-8">
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <div class="carousel-content">
+                                  <div>
+                            <h3><img alt="user" src="images/sir_jadhav.jpg" class="userImg"></h3><br>
+                            <h4><p><i>"This web portal is very helpful for 10th and 12th passed students for choosing right career path in technical education and selection of best polytechnics and Engineering colleges in Maharashtra State. Really I appreciate and congratulation to team of Getstalt for launching technical institute Cutoff search web portal."</i></p>
+                           <p>Dr. V. K. Jadhav (Ph. D., IITB), HOD, EE Dept, Government Polytechnic, Latur</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_patil.jpg" class="userImg"></h3><br>
+                            <h4> <p><i>"Congratulation to team of Gestalt for launching the excellent innovative web portal for students which is very useful for choosing the right career path in polytechnic and engineering education."</i></p>
+                            <p>Prof. S. N. Patil, Director, Narhe Campus, JSPM, Pune.</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_zine.jpg" class="userImg"></h3> <br>
+                           <h4> <p><i>"Fantastic experience while going through ur website. Its gr8 to have such a concise and informative web portal. All engg. aspirants may be able to search what they want at the tip of finger. No need to consult any professional for option form related or college selection related guidance. Great efforts by u and ur team... KUDOS!!!"
+                          </i></p>
+                          <p>Pankaj U. Zine, Research Associate, Mech. Engg. Dept., IIT Delhi.</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_goud.jpg" class="userImg"></h3> <br>
+                           <h4>  <p><i>"One of the best search engine for the students admitted in engineering. Students can search last year cutoff and details of the respective colleges on a single click.So this is a one place solution for students. I thankful to Gestalt IT Consultancy Pvt. Ltd. Pune for such a great innovation."</i></p>
+                          <p>Prof. Laxmikant J Goud, HOD CSE, VIT Pune Latur Campus, Latur</p></h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-example" data-slide="prev"><span class="icon-prev"></span></a>
+    <a class="right carousel-control" href="#carousel-example" data-slide="next"><span class="icon-next"></i></a>
+
+      </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 page-content col-thin-right">
+          <div class="inner-box category-content">
+            <h2>Media Coverage </h2>
+            <div class="color-border"></div>
+            <ul class="cat-list arrow">
+                  <li>
+                    <a class="ng-scope" target="_blank" ng-href="http://epaperbeta.timesofindia.com//Article.aspx?eid=31835&articlexml=21062014008016">
+                      <img class="img-responsive" src="images/site/times-of-india-logo.jpg" alt="Times of India cutoff news">
+                    </a>
+                  </li>
+                  <li>
+                    <a class="ng-scope" target="_blank" ng-href="images/divyamarathi-add.jpg">
+                      <img class="img-responsive" src="images/site/divya-marathi-logo.jpg" alt="Divya Marathi Cutoff search news">
+                    </a>
+                  </li>
+                  <li>
+                    <a class="ng-scope" target="_blank" ng-href="images/sakal-add.jpg">
+                      <img class="img-responsive" src="images/site/sakal-logo.jpg" alt="Sakal cutoffsearch news">
+                    </a>
+                  </li>
+                </ul>
+          </div>
+        </div>
+        <!-- <div class="col-sm-4 page-content col-thin-right">
+          <div class="inner-box category-content">
+            <h2>Events </h2>
+            <div class="color-border"></div>
+            <ul class="cat-list arrow">
                   <li>
                     <a href="#"> Apparel (1,386) </a>
                   </li>
@@ -148,133 +270,69 @@
                     <a href="#"> Art (1,163) </a>
                   </li>
                 </ul>
-              </div>
+          </div>
+        </div> -->
+      </div>
+    <br>
+   </div>
+     </div>
+      <div class="page-info" style="background: url(images/login.jpg); background-size:cover">
+        <div class="container text-center section-promo">
+          <div class="row">
+            <!-- <div id="carousel-example" ng-non-bindable class="carousel slide" data-ride="carousel">
+              <div class="row">
+                  <div class="col-xs-offset-2 col-xs-8">
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <div class="carousel-content">
+                                  <div>
+                            <h3><img alt="user" src="images/sir_jadhav.jpg" class="userImg"></h3><br>
+                            <h4><p><i>"This web portal is very helpful for 10th and 12th passed students for choosing right career path in technical education and selection of best polytechnics and Engineering colleges in Maharashtra State. Really I appreciate and congratulation to team of Getstalt for launching technical institute Cutoff search web portal."</i></p>
+                           <p>Dr. V. K. Jadhav (Ph. D., IITB), HOD, EE Dept, Government Polytechnic, Latur</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_patil.jpg" class="userImg"></h3><br>
+                            <h4> <p><i>"Congratulation to team of Gestalt for launching the excellent innovative web portal for students which is very useful for choosing the right career path in polytechnic and engineering education."</i></p>
+                            <p>Prof. S. N. Patil, Director, Narhe Campus, JSPM, Pune.</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_zine.jpg" class="userImg"></h3> <br>
+                           <h4> <p><i>"Fantastic experience while going through ur website. Its gr8 to have such a concise and informative web portal. All engg. aspirants may be able to search what they want at the tip of finger. No need to consult any professional for option form related or college selection related guidance. Great efforts by u and ur team... KUDOS!!!"
+                          </i></p>
+                          <p>Pankaj U. Zine, Research Associate, Mech. Engg. Dept., IIT Delhi.</p></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                           <h3><img alt="user" src="images/sir_goud.jpg" class="userImg"></h3> <br>
+                           <h4>  <p><i>"One of the best search engine for the students admitted in engineering. Students can search last year cutoff and details of the respective colleges on a single click.So this is a one place solution for students. I thankful to Gestalt IT Consultancy Pvt. Ltd. Pune for such a great innovation."</i></p>
+                          <p>Prof. Laxmikant J Goud, HOD CSE, VIT Pune Latur Campus, Latur</p></h4>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-          </aside>
         </div>
-      </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-example" data-slide="prev"><span class="icon-prev"></span></a>
+    <a class="right carousel-control" href="#carousel-example" data-slide="next"><span class="icon-next"></i></a>
 
-      <div class="inner-box relative">
-        <h2>Featured Listings
-          <a id="nextItem" class="link  pull-right carousel-nav">
-            <i class="icon-right-open-big"></i>
-          </a>
-          <a id="prevItem" class="link pull-right carousel-nav">
-            <i class="icon-left-open-big"></i>
-            </a>
-        </h2>
-        <div class="color-border"></div>
-        <div class="row">
-          <div class="col-lg-12">
-            This is comming soon
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-8 page-content col-thin-right">
-          <div class="inner-box category-content">
-            <h2>Media Coverage</h2>
-            <div class="color-border"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <p>Maharashtra Times :<a class="ng-scope" target="_blank" href="http://epaperbeta.timesofindia.com//Article.aspx?eid=31835&articlexml=21062014008016"> News : "CutOff on click" - 21 June 2014 </a>
-                </p>
-                <br>
-                <p>Sakal Aurangabad :<a href="http://epaper2.esakal.com/17Jun2014/Enlarge/Aurangabad/AurangabadToday/page7.htm" target="_blank"> News: "CutOffSearch Information" - 17 June 2014 </a>
-                </p>
-                <br>
-                <p>Sakal Latur :<a href="images/sakal-add.jpg" target="_blank"> News: "CutOffSearch Website Created" </a>
-                  <p>
-                    </br>
-                    <p>Divya Marathi :<a href="images/divyamarathi-add.jpg" target="_blank"> News: "CutOffSearch and Admission Info" </a>
-                    </p>
-                    </br>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4 page-content col-thin-right">
-          <div class="inner-box category-content">
-            <h2>Facebook </h2>
-            <div class="color-border"></div>
-            <cs-facebook-dir></cs-facebook-dir>
-          </div>
-        </div>
-      </div>
+      </div> -->
     </div>
   </div>
+</div>
 
-  <div class="page-info" style="background: url(images/login.jpg); background-size:cover">
-    <div class="container text-center section-promo">
-      <div class="row">
-      </div>
-    </div>
-  </div>
-  <br>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="panel sidebar-panel">
-          <div class="panel-heading uppercase"><small><strong>ENGINEERING</strong></small>
-          </div>
-          <div class="panel-content">
-            <div class="panel-body text-left">
-              <ul class="list-check">
-                <li>361 Colleges</li>
-                <li>2,017 Courses</li>
-                <li>23,967 Cutoffs</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="panel sidebar-panel">
-          <div class="panel-heading uppercase"><small><strong>POLYTECHNIC </strong></small>
-          </div>
-          <div class="panel-content">
-            <div class="panel-body text-left">
-              <ul class="list-check">
-                <li>408 Colleges</li>
-                <li>2,067 Courses</li>
-                <li>34,931 Cutoffs</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="panel sidebar-panel">
-          <div class="panel-heading uppercase"><small><strong>DIRECT ENG II </strong></small>
-          </div>
-          <div class="panel-content">
-            <div class="panel-body text-left">
-              <ul class="list-check">
-                <li>360 Colleges</li>
-                <li>2,062 Courses</li>
-                <li>28,275 Cutoffs</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="panel sidebar-panel">
-          <div class="panel-heading uppercase"><small><strong>Total</strong></small>
-          </div>
-          <div class="panel-content">
-            <div class="panel-body text-left">
-              <ul class="list-check">
-                <li>1168 Percentiles</li>
-                <li>35 Districts</li>
-                <li>11 Universities</li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </div>

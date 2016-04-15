@@ -8,11 +8,12 @@
  * Controller of the missileManApp
  */
 angular.module('missileManApp')
-  .controller('CutoffCollegeResultCtrl',['collegeResult', '$scope',
-  function (collegeResult, $scope) {
+  .controller('CutoffCollegeResultCtrl',['collegeResult', '$scope', '$stateParams',
+  function (collegeResult, $scope, $stateParams) {
     var init;
 
     init = function() {
+      $scope.isDse = $stateParams.stream === 'dse-engineering';
       collegeResult.$promise.then( function( resp ) {
         $scope.resultList = resp.data;
       });

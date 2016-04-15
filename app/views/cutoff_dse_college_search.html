@@ -1,0 +1,117 @@
+<div class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <a href="#">
+          <img alt="" src="images/site/adbanner2.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner1.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner3.gif" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner5.gif" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/adbanner6.gif" class="img-responsive">
+        </a>
+        <br>
+      </div>
+      <div class="col-sm-6 page-content col-thin-right">
+        <div class="inner-box category-content">
+          <h2>College Search - DSE - (2014-15 Data)</h2>
+          <div class="color-border"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <form name="cutoffCollegeForm" class="form-horizontal" novalidate >
+                <fieldset>
+
+                  <!-- District -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">District
+                      <sup>*</sup>
+                    </label>
+                    <div class="col-md-6">
+                      <select name="category" id="category" ng-model="collegeSearch.district" class="form-control" ng-change="loadCollege()">
+                        <option value="">Select the district...</option>
+                        <option ng-repeat="di in metadata.districts" value="{{di.value}}">{{di.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- College -->
+                  <div class="form-group" ng-show="metadata.collegeList.length">
+                    <label class="col-md-4 control-label">College
+                      <sup>*</sup>
+                    </label>
+                    <div class="col-md-6">
+                      <select name="category" id="category" ng-model="collegeSearch.collegeId" class="form-control" ng-change="loadCutoffDetails()">
+                        <option value="">Select the college...</option>
+                        <option ng-repeat="cl in metadata.collegeList" value="{{cl.collegeId}}">{{cl.collegeName}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                <!-- Seat Type -->
+                <div class="form-group" ng-show="metadata.seatTypes.length">
+                  <label class="col-md-4 control-label">Seat Type
+                    <sup>*</sup>
+                  </label>
+                  <div class="col-md-6">
+                    <select name="seatType" id="seatType" ng-model="collegeSearch.seatType" class="form-control"
+                    ng-change="changeSeatType()">
+                      <option value="">Select the seat type...</option>
+                      <option ng-repeat="st in metadata.seatTypes" value="{{st.value}}">{{st.label}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group"
+                  ng-hide="metadata.categories.length===0">
+                  <label class="col-md-4 control-label">Category
+                    <sup>*</sup>
+                  </label>
+                  <div class="col-md-6">
+                    <select name="category" id="category" ng-model="collegeSearch.category" class="form-control">
+                      <option value="">Select the category...</option>
+                      <option ng-repeat="c in metadata.categories" value="{{c.value}}">{{c.label}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-6">
+                    <button class="btn btn-primary" ng-disabled="enableSubmit()"  ng-click="submit()">Submit</button>
+                  </div>
+                </div>
+
+              </form>
+              <fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <a href="#">
+          <img alt="" src="images/site/adbanner1.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/add2.jpg" class="img-responsive">
+        </a>
+        <br>
+        <a href="#">
+          <img alt="" src="images/site/add3.jpg" class="img-responsive">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

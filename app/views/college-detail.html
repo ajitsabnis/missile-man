@@ -3,7 +3,7 @@
     <div class="dtable hw100">
       <div class="dtable-cell hw100">
         <div class="container text-center" style="background-color: rgba(255, 255, 255, 0.4); padding:10px">
-          <img src="images/jspm_logo.jpg" style="border-radius:50%">
+          <img src="/images/logo.png" style="border-radius:50%" ng-if="!isMobileDevice">
           <h2> {{collegeDetail.collegeName}} </h2>
 
         </div>
@@ -16,30 +16,34 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
+          <div class="col-sm-2">
+          </div>
           <div class="col-sm-2 text-center color_g">
-            <h1>{{collegeDetail.esta_year}}</h1>
-            <p>Established Year</p>
-          </div>
-          <div class="col-sm-2 text-center color_y">
-            <h1>10</h1>
-            <p>Departments</p>
-          </div>
-          <div class="col-sm-2 text-center color_b">
-            <h1>880</h1>
-            <p>Students</p>
-          </div>
-          <div class="col-sm-2 text-center color_p">
-            <h1>20</h1>
-            <p>Courses</p>
-          </div>
-          <div class="col-sm-2 text-center color_r">
-            <h1>100+</h1>
-            <p>Staff</p>
-          </div>
-          <div class="col-sm-2 text-center color_l">
             <h1>{{collegeDetail.collegeId}}</h1>
             <p>Institute Code</p>
           </div>
+          <div class="col-sm-2 text-center color_p">
+            <h1>{{collegeDetail.boysHostel}}</h1>
+            <p>Boys Hostel Intake</p>
+          </div>
+          <div class="col-sm-2 text-center color_b">
+            <h1>{{collegeDetail.girlsHostel}}</h1>
+            <p>Girls Hostel Intake</p>
+          </div>
+          <div class="col-sm-2 text-center color_l">
+            <h1>{{courseDetails.length}}+</h1>
+            <p>Courses</p>
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <!-- <div class="col-sm-2 text-center color_r">
+            <h1>100+</h1>
+            <p>Staff</p>
+          </div>
+          <div class="col-sm-2 text-center color_y">
+            <h1>{{collegeDetail.collegeId}}</h1>
+            <p>Institute Code</p>
+          </div> -->
         </div>
       </div>
       <br>
@@ -48,7 +52,7 @@
 
         <div class="col-sm-9 page-content col-thin-right">
           <div class="inner inner-box ads-details-wrapper">
-            <h2> {{collegeDetail.collegeName}}</h2>
+            <h2 ng-if="!isMobileDevice"> {{collegeDetail.collegeName}}</h2>
             <div class="color-border"></div>
 
             <div class="ads-image">
@@ -64,24 +68,24 @@
             </carousel>
               <!-- <ul class="bxslider">
                 <li>
-                  <img src="images/college/tp-big/img1.jpg" alt="img" />
+                  <img src="/images/college/img1.jpg" alt="img" />
                 </li>
                 <li>
-                  <img src="images/college/tp-big/img2.jpg" alt="img" />
+                  <img src="/images/college/img2.jpg" alt="img" />
                 </li>
                 <li>
-                  <img src="images/college/tp-big/img3.jpg" alt="img" />
+                  <img src="/images/college/img3.jpg" alt="img" />
                 </li>
               </ul> -->
               <!-- <div id="bx-pager">
                 <a class="thumb-item-link" data-slide-index="0" href="#">
-                  <img src="images/college/tp-big/img1.jpg" alt="img" />
+                  <img src="/images/college/img1.jpg" alt="img" />
                 </a>
                 <a class="thumb-item-link" data-slide-index="1" href="#">
-                  <img src="images/college/tp-big/img2.jpg" alt="img" />
+                  <img src="/images/college/img2.jpg" alt="img" />
                 </a>
                 <a class="thumb-item-link" data-slide-index="2" href="#">
-                  <img src="images/college/tp-big/img3.jpg" alt="img" />
+                  <img src="/images/college/img3.jpg" alt="img" />
                 </a>
               </div> -->
             </div>
@@ -94,9 +98,7 @@
               <div class="color-border"></div>
               <div class="row">
                 <div class="ads-details-info col-md-12">
-                  <p>JSPM colleges are committed to provide value based quality education, maintaining pace with changing technology to produce competent and skilled professionals ready to accept global challenges. All the JSPM colleges have well equipped
-                    infrastructure with full facilities to support students in their studies and give access to a wealth of materials, equipments and information.
-                  </p>
+                  <p>{{collegeDetail.collegeInfo}}</p>
 
                   <div class="col-md-12">
                     <aside class="panel panel-body panel-details col-md-8">
@@ -104,15 +106,31 @@
                       <ul>
                         <li>
                           <p class=" no-margin ">
-                            <strong>University:</strong>
-                            Maharashtra State Board of Technical Education (MSBTE)
+                            <strong>Address:</strong>
+                            {{collegeDetail.address}}
                           </p>
                         </li>
                         <li>
                           <p class="no-margin">
-                            <strong>College type:</strong> Private/Self Financing
+                            <strong>District:</strong>{{collegeDetail.district}}
                           </p>
                         </li>
+                        <li>
+                          <p class="no-margin">
+                            <strong>Status 1: </strong>{{collegeDetail.status1}}
+                          </p>
+                        </li>
+                        <li>
+                          <p class="no-margin">
+                            <strong>Status 2: </strong>{{collegeDetail.status2}}
+                          </p>
+                        </li>
+                        <li>
+                          <p class="no-margin">
+                            <strong>Status 3: </strong>{{collegeDetail.status3}}
+                          </p>
+                        </li>
+                        <!--
                         <li>
                           <p class="no-margin">
                             <strong>Management:</strong> Jayawant Shikshan Prasarak Mandal's Education Society
@@ -122,7 +140,7 @@
                           <p class=" no-margin ">
                             <strong>Accreditation:</strong> AICTE
                           </p>
-                        </li>
+                        </li> -->
 
                       </ul>
                     </aside>
@@ -130,61 +148,51 @@
                       <ul class="list-border">
                         <li>
                           <a href="#">
-                            <i class=" fa fa-user"></i> More ads by User
+                            <i class=" fa fa-user"></i> More colleges
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            <i class=" fa fa-heart"></i> Save ad
+                            <i class=" fa fa-heart"></i> Save college
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            <i class="fa fa-share-alt"></i> Share ad
+                            <i class="fa fa-share-alt"></i> Share college
                           </a>
                         </li>
                         <li>
                           <a href="#">
-                            <i class="fa icon-info-circled-alt"></i> Report abuse
+                            <i class="fa icon-info-circled-alt"></i> Report
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <h4>Departments and Courses</h4>
+                    <h4>Courses and choice code</h4>
 
                     <ul class="list-circle">
-                      <li>Diploma in Computer Engineering</li>
-                      <li>Diploma in Electronics & Telecommunication Engineering</li>
-                      <li>Diploma in Information Technology</li>
-                      <li>Diploma in Mechanical Engineering</li>
-                      <li>Diploma in Civil Engineering</li>
-                      <li>Diploma in Electrical Engineering</li>
-                      <li>Diploma in Electronics & Telecommunication Engineering</li>
-                      <li>Diploma in Information Technology</li>
+                      <li ng-repeat="c in courseDetails" ng-if="c.courseName">
+                          {{c.courseName}} - ({{c.choiceCode}})
+                          <div>Start Year - {{c.startyear}}</div>
+                          <div>Intake - {{c.courseIntek}}</div>
+                      </li>
                     </ul>
                   </div>
                   <div class="col-md-6">
                     <h4>Facilities & Amenities</h4>
 
                     <ul class="list-circle">
-                      <li>Audio Visual Aids Room</li>
-                      <li>Canteen</li>
-                      <li>Computer Lab</li>
-                      <li>Internet</li>
-                      <li>Laboratory</li>
-                      <li>Language Lab</li>
-                      <li>Library</li>
-                      <li>Multimedia Lab</li>
-                      <li>Reading Rooms</li>
-                      <li>Transportation Facility</li>
-                      <li>Workshop</li>
+                      <li ng-repeat="f in collegeFacilities">
+                        {{f}}
+                      </li>
                     </ul>
                   </div>
                 </div>
-
-
+                <a href="#contactAdvertiser" class="btn   btn-default btn-lg">
+                  <i class=" icon-mail-2"></i> Download PDF Brochure
+                </a>
 
               </div>
 
@@ -195,65 +203,84 @@
         </div>
         <div class="col-sm-3  page-sidebar-right">
           <aside>
-
-            <div class="inner-box no-padding">
-              <div class="inner-box-content">
-                <a href="#">
-                  <img alt="tv" src="images/site/add2.png" class="img-responsive">
-                </a>
-              </div>
-            </div>
-            <div class="inner-box no-padding">
-              <div class="inner-box-content">
-                <a href="#">
-                  <img alt="tv" src="images/site/add4.jpg" class="img-responsive">
-                </a>
-              </div>
-            </div>
-            <div class="inner-box no-padding">
-              <div class="inner-box-content">
-                <a href="#">
-                  <img alt="tv" src="images/site/add3.jpg" class="img-responsive">
-                </a>
-              </div>
-            </div>
-
             <div class="panel sidebar-panel panel-contact-seller">
               <div class="panel-heading">Contact Details</div>
               <div class="panel-content user-info">
                 <div class="panel-body text-center">
                   <div class="seller-info">
-                    <h3 class="no-margin">Richard Aki</h3>
-                    <p>Location:
-                      <strong>Pune</strong>
+                    <h3 class="no-margin">&lt;Contact Person&gt;</h3>
+                    <p>Website:
+                      <strong><a ng-href="http://{{collegeDetail.website}}" target="_blank">{{collegeDetail.website}}</a></strong>
                     </p>
                     <p>Email:
-                      <strong>bsp@jspmengg.com</strong>
+                      <strong><a ng-href="mailto:{{collegeDetail.email}}">{{collegeDetail.email}}</a></strong>
                     </p>
                   </div>
                   <div class="user-ads-action">
-                    <a href="#contactAdvertiser" data-toggle="modal" class="btn   btn-default btn-block">
+                    <!-- <a href="#contactAdvertiser" data-toggle="modal" class="btn   btn-default btn-block">
                       <i class=" icon-mail-2"></i> Send a message
-                    </a>
+                    </a> -->
                     <a class="btn  btn-info btn-block">
-                      <i class=" icon-phone-1"></i> +91 932-614-6833
+                      <i class=" icon-phone-1"></i> {{collegeDetail.officePhone}}
+                    </a>
+                    <a class="btn btn-warning btn-block" ng-click="openContactPopup()">
+                      <i class=" icon-mail-2"></i> Request for Contact
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-
+            <div class="inner-box no-padding">
+              <div class="inner-box-content">
+                <a href="#">
+                  <img alt="tv" src="/images/site/add2.png" class="img-responsive">
+                </a>
+              </div>
+            </div>
+            <div class="inner-box no-padding">
+              <div class="inner-box-content">
+                <a href="#">
+                  <img alt="tv" src="/images/site/add4.jpg" class="img-responsive">
+                </a>
+              </div>
+            </div>
+            <div class="inner-box no-padding">
+              <div class="inner-box-content">
+                <a href="#">
+                  <img alt="tv" src="/images/site/add3.jpg" class="img-responsive">
+                </a>
+              </div>
+            </div>
           </aside>
         </div>
       </div>
+
+      <div class="inner-box relative">
+        <a class="facebook" ng-href="http://facebook.com"><i class="fa fa-facebook fa-3x"></i></a>
+        <a class="twitter" ng-href="http://twitter.com"><i class="fa fa-twitter fa-3x"></i></a>
+        <a class="youtube" ng-href="http://youtube.com"><i class="fa fa-youtube fa-3x"></i></a>
+
+      </div>
+
+
+
 
       <div class="inner-box relative">
         <h2>Locate</h2>
         <div class="color-border"></div>
         <div class="row">
           <div class="col-lg-12">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1423809000824" width="100%" height="350" frameborder="0" style="border:0"></iframe>
-          </div>
+            <!-- <iframe src="https://www.google.com/maps/embed?q=fergusancollege" width="100%" height="350" frameborder="0" style="border:0"></iframe> -->
+
+
+          <!-- <iframe
+          width="100%"
+          height="350"
+          frameborder="0" style="border:0"
+          ng-src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAE4Eu2lyRw9bKuF7DIBGPjQNlTDS0MK2o&q=fergusan+college+pune" allowfullscreen>
+        </iframe> -->
+        <college-location college-name="{{collegeDetail.collegeName}}"></college-location>
+      </div>
         </div>
       </div>
 
@@ -274,7 +301,7 @@
               <div class="item">
                 <a href="search.html">
                   <span class="item-carousel-thumb">
-                    <img class="item-img" src="images/college/tp/abc.jpg" alt="img">
+                    <img class="item-img" src="/images/college/abc.jpg" alt="img">
                   </span>
                   <span class="item-name"> Abasaheb Garware College </span>
 
@@ -283,7 +310,7 @@
               <div class="item">
                 <a href="search.html">
                   <span class="item-carousel-thumb">
-                    <img class="item-img" src="images/college/tp/fergusson.jpg" alt="img">
+                    <img class="item-img" src="/images/college/fergusson.jpg" alt="img">
                   </span>
                   <span class="item-name"> Fergusson College </span>
 
@@ -292,7 +319,7 @@
               <div class="item">
                 <a href="search.html">
                   <span class="item-carousel-thumb">
-                    <img class="img-responsive" src="images/college/tp/jspm.jpg" alt="img">
+                    <img class="img-responsive" src="/images/college/jspm.jpg" alt="img">
                   </span>
                   <span class="item-name"> Jayawant Shikshan Prasarak Mandal </span>
 
@@ -301,7 +328,7 @@
               <div class="item">
                 <a href="search.html">
                   <span class="item-carousel-thumb">
-                    <img class="item-img" src="images/college/tp/dypatil.jpg" alt="img">
+                    <img class="item-img" src="/images/college/dypatil.jpg" alt="img">
                   </span>
                   <span class="item-name"> Dr. D.Y. Patil Vidyapeeth, Pune </span>
 
@@ -310,7 +337,7 @@
               <div class="item">
                 <a href="search.html">
                   <span class="item-carousel-thumb">
-                    <img class="item-img" src="images/college/tp/coep.jpg" alt="img">
+                    <img class="item-img" src="/images/college/coep.jpg" alt="img">
                   </span>
                   <span class="item-name"> College of Engineering, Pune </span>
 
@@ -320,6 +347,9 @@
           </div>
         </div>
       </div> -->
+       <!-- Modal -->
+
+
     </div>
   </div>
 </div>

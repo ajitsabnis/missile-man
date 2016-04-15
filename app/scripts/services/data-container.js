@@ -10,6 +10,5 @@
 angular.module('missileManApp')
   .service('dataContainer', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.demo = 'this is demo';
     return this;
   });

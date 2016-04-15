@@ -20,7 +20,7 @@
               <p class="p1">Pune | Maharashtra | India</p>
               <p>&nbsp;</p>
               <p>Email: info@gitcpl.com</p>
-              <p>Toll Free:+91 9552279841</p>
+              <p>Contact Number:+91 9552279841</p>
               <p>&nbsp;</p>
             </div>
           </div>
@@ -82,8 +82,8 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-md-12 ">
-                      <button type="submit" class="btn btn-primary btn-lg" ng-click="add()">Submit</button>
+                    <div class="col-md-12 " ng-hide="isSubmitted">
+                      <button type="submit" class="btn btn-primary btn-lg" ng-click="add()" ng-disabled="enableSubmit()">Submit</button>
                     </div>
                   </div>
                 </div>

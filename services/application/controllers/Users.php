@@ -33,7 +33,7 @@ class Users extends CosRestController
         'csDistrict' => $this->post('district'),
         'csAboutMe' => $this->post('aboutMe'),
         'csEmail' => $this->post('email'),
-        'isBlock' => 1,
+        'isBlock' => 0, //Disabling OTP
         'csOtp'=> $tempOtp,
         'csPassword' => MD5($this->post('password')),
         'ipAddress' => $this->input->ip_address(),
@@ -53,14 +53,28 @@ class Users extends CosRestController
         $this->db->insert('cosUsers', $user);
 
         $this->load->library('email');
-        $this->email->from('support@cutoffsearch.com', 'Cutoffsearch Admin');
+        $config = array(
+          'charset' => 'utf-8',
+          'wordwrap' => TRUE,
+        );
+
+	$urlLink = 'http://www.cutoffsearch.com/services/index.php/users/verify?mobile='.element( 'csPhone', $user ).'&otp='.$tempOtp.'&hash='.md5(rand(100,500));
+
+        $userFullName = $this->post('firstName') . ' ' . $this->post('lastName');
+        $mailData = array(
+          'phone' => element( 'csPhone', $user ),
+          'otp' => $tempOtp,
+          'urlLink' => $urlLink,
+          'name' => $userFullName
+        );
+        $this->email->initialize($config);
+        $this->email->from('support@cutoffsearch.com', 'Cutoff Support');
+        $this->email->set_mailtype('html');
         $this->email->to($this->post('email'));
-        $this->email->bcc('scriptofer@gmail.com');
-        $this->email->subject('Cutoffsearch - one time password');
-        $message = "Your one time password for login to the system is ";
-        $message .= $tempOtp;
-        $message .= ". Please authorise.";
-        $this->email->message($message);
+        $this->email->bcc('vishnutekale13@gmail.com');
+        $this->email->subject('Cutoffsearch Signup');
+        $html_email = $this->load->view('mail/templatewithoutotpmail', $mailData, true);
+        $this->email->message($html_email);
         $this->email->send();
 
         $this->response(array("data" => array(
@@ -84,13 +98,11 @@ class Users extends CosRestController
     }
   }
 
-  public function authorise_post()
+  public function authorise($phone, $otp, $isByLink)
   {
-    $phone = $this->post('phone');
-    $otp = $this->post('otp');
-
     $this->load->database();
     $this->load->helper('array');
+    $this->load->helper('url');
 
     $this->db->where('csPhone',$phone );
     $this->db->where('csOtp', $otp );
@@ -109,12 +121,17 @@ class Users extends CosRestController
       $this->db->where('csOtp', $otp );
       $this->db->update('cosUsers', $data);
 
-      $this->response(array("data" => array(
-        "status" => 201,
-        "message" => "User is authorised.",
-        "otp" => $otp,
-        "query" => $this->db->last_query()
-      )));
+      if($isByLink) {
+        redirect('http://www.cutoffsearch.com/#/login/'.$phone, 'refresh');
+      } else {
+        $this->response(array("data" => array(
+          "status" => 201,
+          "message" => "Congratulations. You are verified. Please login and start searching.",
+          "otp" => $otp,
+          "query" => $this->db->last_query()
+        )));
+
+      }
     } else {
       $this->response(array("data" => array(
         "status" => 301,
@@ -125,11 +142,23 @@ class Users extends CosRestController
     }
   }
 
+  public function verify_get() {
+    $mobile = $this->get('mobile');
+    $otp = $this->get('otp');
+    $this->authorise($mobile, $otp, true);
+  }
+
+  public function authorise_post() {
+    $phone = $this->post('phone');
+    $otp = $this->post('otp');
+
+    $this->authorise($phone, $otp, false);
+  }
+
+
 
   public function login_post()
   {
-    // $this->load->library('encrypt');
-
     $phone = $this->post('phone');
     $password = MD5($this->post('password'));
 
@@ -167,14 +196,6 @@ class Users extends CosRestController
       "query1" => md5('demo'),
       "query2" => md5('demo')
     )));
-    // if( count($this->input->post()) > 0 )
-    // {
-    //     echo "Wroking";
-    // }
-    // else
-    // {
-    //   echo $this->post('firstName');
-    // }
   }
 }
 ?>

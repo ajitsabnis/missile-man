@@ -46,7 +46,7 @@ angular
         controller: 'ContactUsCtrl'
       })
       .state('login', {
-        url: '/login',
+        url: '/login/:phone',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
@@ -70,26 +70,38 @@ angular
         templateUrl: 'views/cutoff_college_search.html',
         controller: 'CutoffCollegeSearchCtrl'
       })
+      .state('cutoff-dse-college-search', {
+        url: '/cutoff-dse-college-search/:stream',
+        templateUrl: 'views/cutoff_dse_college_search.html',
+        controller: 'CutoffDseCollegeSearchCtrl'        
+      })
       .state('cutoff-college-result', {
         url: '/cutoff-college-result/:stream',
         templateUrl: 'views/cutoff_college_result.html',
         controller: 'CutoffCollegeResultCtrl',
         resolve: {
           collegeResult: function(collegeSearch, dataContainer) {
-            var searchParams = dataContainer.cutoffCollege;
-            // console.log( searchParams );
-            // return collegeSearch.cutoff().get();
-            // alert(searchParams.collegeSearch.stream);
-            return collegeSearch.cutoff().get( {
-              stream: searchParams.stream,
-              course: searchParams.course,
-              district: searchParams.collegeSearch.district,
-              collegeId: searchParams.collegeSearch.collegeId,
-              criteria: searchParams.criteria
-            } );
+            var searchParams = dataContainer.cutoffCollege,
+                isDse = dataContainer.cutoffCollege.isDse;
+            if(isDse) {
+              return collegeSearch.cutoff(isDse).get( {
+                stream: searchParams.stream,
+                course: searchParams.course,
+                district: searchParams.collegeSearch.district,
+                collegeId: searchParams.collegeSearch.collegeId,
+                criteria: searchParams.criteria
+              } );
+            } else {
+              return collegeSearch.cutoff().get( {
+                stream: searchParams.stream,
+                course: searchParams.course,
+                district: searchParams.collegeSearch.district,
+                collegeId: searchParams.collegeSearch.collegeId,
+                criteria: searchParams.criteria
+              } );  
+            }   
           }
         }
-
       })
       .state('college-search', {
         url: '/college-search',
@@ -103,6 +115,9 @@ angular
               district: searchParams.district.name,
               stream: searchParams.stream.name
             } );
+          },
+          searchParams: function(dataContainer) {
+            return dataContainer.homeSearch;
           }
         }
       })
@@ -118,7 +133,29 @@ angular
           }
 
         }
-      });
+      })
+    .state( 'googlemaps', {
+      url: '/maps',
+      templateUrl: 'views/google-maps.html',
+      data: {}
+    })
+    .state( 'advertisewithus', {
+      url: '/advertise-with-us',
+      templateUrl: 'views/advertise-with-us.html',
+      controller: 'AboutUsCtrl',
+      data: {}
+    })
+    .state( 'download', {
+      url: '/download',
+      templateUrl: 'views/download.html',
+      controller: 'DownloadCtrl',
+      data: {}
+    })
+    .state( 'under-construction', {
+      url: '/under-construction',
+      templateUrl: 'views/page-under-contruction.html',
+      controller: 'AboutUsCtrl'
+    });
   }])
   .config(['$resourceProvider', function($resourceProvider) {
     // Don't strip trailing slashes from calculated URLs
@@ -130,4 +167,12 @@ angular
   }])
   .config(function(uiSelectConfig) {
     uiSelectConfig.theme = 'bootstrap';
+  })
+  .run(function($rootScope) {
+    var mobileRegex = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/;
+    $rootScope.isMobileDevice = mobileRegex.test(navigator.userAgent);
+
+    $rootScope.$on('$stateChangeError', function() {
+      console.log(arguments);
+    });
   });

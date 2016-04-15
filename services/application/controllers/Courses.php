@@ -33,6 +33,8 @@ class Courses extends CosRestController
     // $this->response($data);
 
     $this->load->database();
+    $stream = urldecode($stream);
+    $district = urldecode($district);
     // $this->db->select('districtID, districtName');
     // $sql = $this->db->get_compiled_select( 'districts' );
     // $this->response( $sql );
@@ -44,7 +46,7 @@ class Courses extends CosRestController
     $this->db->where("stream", $stream);
     $this->db->where("district", $district);
     $this->db->where_not_in('branch', 'N/A');
-    $this->response(array("data" => $this->db->get('cosCourses')->result()));
+    $this->response(array("data" => $this->db->get('cosCourses')->result(), "stream" => $stream));
   }
 
 }
