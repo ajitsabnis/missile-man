@@ -17,6 +17,10 @@ angular.module('missileManApp')
       collegeResult.$promise.then( function( resp ) {
         $scope.resultList = resp.data;
         
+        if(resp.data[0] && resp.data[0].collegeName) {
+          $scope.showCollegeName = true;
+        }
+        
         if(collegeResult.msg) {
             var config = {
                 title: 'Information',

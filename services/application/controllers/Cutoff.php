@@ -175,6 +175,7 @@ class Cutoff extends CosRestController
                 when 'L' THEN 'Ladies'
                 when 'O' THEN 'OMS'
                 when 'A' THEN 'AI'
+                when 'C' THEN 'Minority'
               else 'ZZZ'
               end As 'Label'";
 
@@ -282,6 +283,7 @@ class Cutoff extends CosRestController
       $this->db->select('cosCourses.name as courseName');
     }
     $this->db->select('cosCourses.type as courseType');
+    $this->db->select('cosColleges.name as collegeName');
 
 
 

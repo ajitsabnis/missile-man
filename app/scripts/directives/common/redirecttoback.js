@@ -12,6 +12,7 @@ angular.module('missileManApp')
     	restrict: 'A',
     	 link: function( scope, element, attrs ) {
             element.on( 'click', function () {
+                console.log('clicked me');
                 history.back();
                 scope.$apply();
             } );

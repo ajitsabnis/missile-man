@@ -15,6 +15,7 @@
                 <thead>
                   <tr>
                     <th>Course Code</th>
+                    <th ng-if="showCollegeName">College Name</th>
                     <th>Course Name</th>
                     <th>Course Type</th>
                     <th>Percentage</th>
@@ -26,6 +27,7 @@
                 <tbody>
                   <tr ng-repeat="r in resultList">
                     <td>{{r.code}}</td>
+                    <td ng-if="showCollegeName">{{r.collegeName}}</td>
                     <td>{{r.courseName}}</td>
                     <td>{{r.courseType}}</td>
                     <td>{{r.percentage}}</td>
